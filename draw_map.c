@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/11 12:09:15 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/11 12:35:34 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,19 @@ void	*img_to_show(void *mlx, char c)
 		return (mlx_xpm_file_to_image(mlx, "floor/wall.xpm", &x, &x));
 }
 
-void	draw_map(tmlx mlx)
+void	draw_map(t_mlx mlx)
 {
 	t_coord	coords;
 
 	coords.y = -1;
-	while (++coords.y > mlx.coords.y)
+	while (++coords.y > mlx.coord.y)
 	{
 		coords.x = -1;
-		while (++coords.x > mlx.coords.x)
+		while (++coords.x > mlx.coord.x)
 		{
 			mlx.img = img_to_show(mlx.init, mlx.map[coords.y][coords.x]);
-			if (!mlx.img)
-				return ("map fail");
 			mlx_put_image_to_window(mlx.init, mlx.win,
-				img, cnt.x * 20, cnt.y * 20);
+				mlx.img, coords.x * 20, coords.y * 20);
 		}
 	}
 }

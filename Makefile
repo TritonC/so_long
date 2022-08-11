@@ -1,5 +1,5 @@
 NAME = so_long
-SRC = testing.c hooks.c
+SRC = first_map_test.c hooks.c draw_map.c
 CFLAGS = -Wall -Wextra -Werror -Imlx
 RM = /bin/rm -rf
 CC = gcc

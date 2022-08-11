@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:26:48 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/11 11:51:53 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/11 12:11:44 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_data {
 	t_coord		coord;
 }				t_mlx;
 
-int	key_hook_esc(int key, t_mlx mlx);
+int		key_hook_esc(int key, t_mlx mlx);
+void	*img_to_show(void *mlx, char c);
+void	draw_map(t_mlx mlx);
 
 #endif
