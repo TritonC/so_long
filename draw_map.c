@@ -3,50 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 21:27:06 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/07/10 00:15:50 by mde-arpe         ###   ########.fr       */
+/*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
+/*   Updated: 2022/08/11 12:09:15 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*img_choose(void *mlx, char c)
+void	*img_to_show(void *mlx, char c)
 {
 	int	x;
 
 	if (c == '1')
 		return (mlx_xpm_file_to_image(mlx, "visual/wall.xpm", &x, &x));
 	else if (c == 'E')
-		return (mlx_xpm_file_to_image(mlx, "visual/exit.xpm", &x, &x));
+		return (mlx_xpm_file_to_image(mlx, "visual/player.xpm", &x, &x));
 	else if (c == 'C')
 		return (mlx_xpm_file_to_image(mlx, "visual/collectible.xpm", &x, &x));
 	else if (c == 'P')
 		return (mlx_xpm_file_to_image(mlx, "visual/player_for.xpm", &x, &x));
-	else if (c == 'L')
-		return (mlx_xpm_file_to_image(mlx, "visual/player_left.xpm", &x, &x));
-	else if (c == 'R')
-		return (mlx_xpm_file_to_image(mlx, "visual/player_right.xpm", &x, &x));
-	else if (c == 'B')
-		return (mlx_xpm_file_to_image(mlx, "visual/player_back.xpm", &x, &x));
-	return (mlx_xpm_file_to_image(mlx, "visual/suelo.xpm", &x, &x));
+	else
+		return (mlx_xpm_file_to_image(mlx, "floor/wall.xpm", &x, &x));
 }
 
-void	draw_map(t_mlx mlx)
+void	draw_map(tmlx mlx)
 {
-	t_coor	cnt;
-	void	*img;
+	t_coord	coords;
 
-	cnt.y = -1;
-	while (++cnt.y < mlx.dim.y)
+	coords.y = -1;
+	while (++coords.y > mlx.coords.y)
 	{
-		cnt.x = -1;
-		while (++cnt.x < mlx.dim.x)
+		coords.x = -1;
+		while (++coords.x > mlx.coords.x)
 		{
-			img = img_choose(mlx.init, mlx.map[cnt.y][cnt.x]);
-			if (!img)
-				free_write_exit("Error: image not found\n", mlx.map, NULL, 1);
+			mlx.img = img_to_show(mlx.init, mlx.map[coords.y][coords.x]);
+			if (!mlx.img)
+				return ("map fail");
 			mlx_put_image_to_window(mlx.init, mlx.win,
 				img, cnt.x * 20, cnt.y * 20);
 		}
