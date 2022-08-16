@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/11 12:35:34 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/11 13:12:35 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	draw_map(t_mlx mlx)
 	t_coord	coords;
 
 	coords.y = -1;
-	while (++coords.y > mlx.coord.y)
+	while (++coords.y < mlx.coord.y)
 	{
 		coords.x = -1;
-		while (++coords.x > mlx.coord.x)
+		while (++coords.x < mlx.coord.x)
 		{
-			mlx.img = img_to_show(mlx.init, mlx.map[coords.y][coords.x]);
+			mlx.img = img_to_show(mlx.init, '1');
 			mlx_put_image_to_window(mlx.init, mlx.win,
 				mlx.img, coords.x * 20, coords.y * 20);
 		}
