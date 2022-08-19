@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/19 14:54:10 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:33:08 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	create_map(char *file, t_mlx *mlx);
 void	img_name(t_mlx *mlx, char c, int pos);
 void	*choose_img(void *mlx, char c);
 
+# define PI 64
 # ifdef OSX
 #  define KEY_ESC 53
 #  define KEY_UP 126
