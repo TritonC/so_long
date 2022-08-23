@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:47:47 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 18:42:23 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:17:05 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 void	free_write_exit(const char *str, char **map, char *lane, int e)
 {
-	int	count;
+	int	counter;
 
-	count = 0;
-	while (map[count])
+	if (map)
 	{
-		free(map[count]);
-		count++;
+		counter = 0;
+		while (map[counter])
+		{
+			free(map[counter]);
+			counter++;
+		}
+		free(map);
 	}
-	free(lane);
 	if (lane)
 		free(lane);
-	if (map)
-		free(map);
-	write (2, str, ft_strlen(str));
-	exit (e);
+	if (str)
+		write(2, str, ft_strlen(str));
+	if (e != -1)
+		exit(e);
 }
 
 int	close_win(t_mlx *mlx)
