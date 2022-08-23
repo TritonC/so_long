@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 19:53:53 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:57:11 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	**realloc_double(char **map, char *lane)
 	ret[count + 1] = NULL;
 	return (ret);
 }
-
 
 static int	check_line(char *lane, int len_lane)
 {
