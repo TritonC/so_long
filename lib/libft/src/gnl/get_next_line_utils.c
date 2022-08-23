@@ -3,73 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsanchez <dsanchez@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 20:28:48 by dsanchez          #+#    #+#             */
-/*   Updated: 2021/11/20 17:46:32 by dsanchez         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:55:50 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen_gnl(char const *s)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	len;
+	size_t	num;
+	size_t	counter;
+	char	*mem;
 
-	len = 0;
-	if (!s)
-		return (0);
-	while (s[len] != 0)
-		len++;
-	return (len);
+	num = count * size;
+	counter = 0;
+	mem = NULL;
+	if (num < size && num < count)
+		return (NULL);
+	mem = malloc(num);
+	if (!mem)
+		return (NULL);
+	while (counter < num)
+		mem[counter++] = 0;
+	return ((void *)mem);
 }
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+size_t	ft_strlen(const char *str)
 {
-	unsigned char	*cdest;
-	unsigned char	*csrc;
-	size_t			i;
+	size_t	count;
 
-	if (!dest && !src)
-		return (dest);
-	cdest = (unsigned char *)dest;
-	csrc = (unsigned char *)src;
-	i = n;
-	if (csrc <= cdest)
+	count = 0;
+	if (!str)
+		return (0);
+	while (str[count])
 	{
-		while (i--)
-			cdest[i] = csrc[i];
+		count++;
 	}
-	else
+	return (count);
+}
+
+char	*ft_strchr(const char *str, int ch)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (ch == 0)
+		return ((char *)str + (char)len);
+	while (*str)
 	{
-		i = 0;
-		while (i < n)
+		if (*str == (char)ch)
+			return ((char *)str);
+		str++;
+	}
+	return (0);
+}
+
+char	*ft_strjoin(char const *dest, char const *src)
+{
+	char	*res;
+	int		i;
+	int		j;
+
+	i = 0;
+	res = ft_calloc(sizeof(char), (ft_strlen(dest) + ft_strlen(src) + 1));
+	if (!res || (!dest && !src))
+		return (NULL);
+	if (dest)
+	{
+		while (dest[i])
 		{
-			cdest[i] = csrc[i];
+			res[i] = dest[i];
 			i++;
 		}
 	}
-	return (dest);
-}
-
-char	*ft_strjoin_gnl(char *s1, char *s2)
-{
-	char	*res;
-	int		s1_l;
-	int		s2_l;
-	int		s_l;
-
-	s1_l = ft_strlen_gnl(s1);
-	s2_l = ft_strlen_gnl(s2);
-	s_l = s1_l + s2_l;
-	if ((!s1 && !s2) || s_l == 0)
-		return (NULL);
-	res = (char *) malloc(s_l + 1);
-	if (!res)
-		return (NULL);
-	ft_memmove(res, s1, s1_l);
-	ft_memmove(res + s1_l, s2, s2_l);
-	res[s_l] = 0;
-	free(s1);
+	j = 0;
+	while (src[j] != 0)
+	{
+		res[i] = src[j];
+		i++;
+		j++;
+	}
 	return (res);
 }

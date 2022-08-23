@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 18:38:53 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:41:52 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	init_game(t_mlx *mlx)
 		mlx->coord.y);
 }
 
-int	main(int agrc, char **agrv)
+int	main(int argc, char **argv)
 {
 	t_mlx		mlx;
 
-	if (agrc != 2)
-		return (ft_printf("argument number invalid\n"));
-	create_map(agrv[1], &mlx);
+	if (argc != 2)
+		return (ft_printf("Error: argument number invalid\n"));
+	create_map(argv[1], &mlx);
 	init_game(&mlx);
 	mlx_key_hook(mlx.win, key_hook_esc, &mlx);
 	mlx_loop(mlx.init);

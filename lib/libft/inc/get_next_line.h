@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsanchez <dsanchez@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 20:47:45 by dsanchez          #+#    #+#             */
-/*   Updated: 2021/11/20 17:47:02 by dsanchez         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:58:18 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include <string.h>
-# include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
 
-char	*ft_strjoin_gnl(char *s1, char *s2);
-size_t	ft_strlen_gnl(char const *s);
+void	*ft_calloc(size_t n, size_t size);
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *str, int ch);
+char	*ft_strjoin(char const *dest, const char *src);
 char	*get_next_line(int fd);
+char	*rest_of_file(char *buffer);
+char	*read_and_save(int fd, char *buff);
 
 #endif

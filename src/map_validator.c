@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/19 14:56:23 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:53:53 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**realloc_double(char **map, char *lane)
 	return (ret);
 }
 
-//ret 0 if wrong line
+
 static int	check_line(char *lane, int len_lane)
 {
 	int	i;
@@ -102,7 +102,7 @@ void	create_map(char *file, t_mlx *mlx)
 	fd = open(file, O_RDONLY);
 	lane = get_next_line(fd);
 	if (!check_first_last(lane))
-		free_write_exit("Error: map error\n", NULL, lane, 1);
+		free_write_exit("Error: invalid file\n", NULL, lane, 1);
 	mlx->coord.x = ft_strlen(lane) - 1;
 	mlx->coord.y = 0;
 	mlx->map = NULL;
@@ -110,11 +110,11 @@ void	create_map(char *file, t_mlx *mlx)
 	{
 		mlx->map = realloc_double(mlx->map, lane);
 		if (!check_line(lane, mlx->coord.x))
-			free_write_exit("Error: map error holaaaaa\n", mlx->map, NULL, 1);
+			free_write_exit("Error: map error\n", mlx->map, NULL, 1);
 		lane = get_next_line(fd);
 		mlx->coord.y++;
 	}
-	if (mlx->coord.y > 70 || !check_first_last((mlx->map)[mlx->coord.y - 1]))
+	if (mlx->coord.y > 72 || !check_first_last((mlx->map)[mlx->coord.y - 1]))
 		free_write_exit("Error: map error\n", mlx->map, NULL, 1);
 	close(fd);
 }

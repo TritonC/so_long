@@ -3,114 +3,140 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsanchez <dsanchez@student.42madrid>       +#+  +:+       +#+        */
+/*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 20:47:40 by dsanchez          #+#    #+#             */
-/*   Updated: 2021/11/20 17:46:51 by dsanchez         ###   ########.fr       */
+/*   Updated: 2022/08/23 19:57:58 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	next_nl(char *line)
+char	*ft_join_and_free(char *buffer, char *sub_bufer)
 {
-	int	i;
+	char	*aux;
 
-	i = 0;
-	if (!line)
-		return (-1);
-	while (line[i])
+	aux = ft_strjoin(buffer, sub_bufer);
+	free(buffer);
+	return (aux);
+}
+/*
+this function checks if there is a line to copy, and stores it in a 
+dynamic array and returns the new line with a line feed and a null.
+*/
+
+char	*check_line_gnl(char *str)
+{
+	int		count;
+	char	*line;
+
+	count = 0;
+	if (!str[count])
+		return (NULL);
+	while (str[count] && str[count] != '\n')
+		count++;
+	line = ft_calloc(count + 2, sizeof(char));
+	count = 0;
+	while (str[count] && str[count] != '\n')
 	{
-		if (line[i] == '\n')
-			return (i);
-		i++;
+		line[count] = str[count];
+		count++;
 	}
-	return (-1);
+	if (str[count] == '\n' && str[count])
+		line[count] = '\n';
+	return (line);
 }
 
-char	*get_res(char *line)
+/*
+this function, is to store the remaining content of the file 
+(remaining content == to content after the line to be displayed)
+we create a dynamic array with the size of the BUFFER_SIZE + 1, 
+and there we store what we want to be copied from the line, we join to save 
+that is the function passed by parameter to be returned, and line is 
+released just at the end of the function
+*/
+char	*read_and_save(int fd, char *buff)
 {
-	char	*res;
-	int		l;
-	int		i;
+	char	*sub_buff;
+	ssize_t	bytes_count;
 
-	i = 0;
-	l = 0;
-	if (!line)
-		return (NULL);
-	while (line[l] && line[l] != '\n')
-		l++;
-	if (line[l] == '\n')
-		l++;
-	res = malloc(l + 1);
-	if (!res)
-		return (NULL);
-	while (i < l)
-	{
-		res[i] = line[i];
-		i++;
-	}
-	res[i] = 0;
-	return (res);
-}
-
-char	*get_line(char *line)
-{
-	int		l;
-	int		i;
-	char	*nline;
-
-	i = 0;
-	l = 0;
-	if (!line)
-		return (NULL);
-	while (line[l] && line[l] != '\n')
-		l++;
-	if (line[l] == '\n')
-		l++;
-	nline = malloc(ft_strlen_gnl(line) - l + 1);
-	while (line[l])
-		nline[i++] = line[l++];
-	nline[i] = 0;
-	free(line);
-	if (nline[0] != 0)
-		return (nline);
-	else
-	{
-		free(nline);
-		return (NULL);
-	}
-}
-
-char	*get_next_line(int fd)
-{
-	char		*buff;
-	int			r;
-	int			i;
-	static char	*line;
-
-	i = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
+		buff = ft_calloc(1, 1);
+	sub_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!sub_buff)
 		return (NULL);
-	r = 1;
-	while (r != 0 && next_nl(line) == -1)
+	bytes_count = 1;
+	while (bytes_count > 0)
 	{
-		r = read(fd, buff, BUFFER_SIZE);
-		if (r == -1)
+		bytes_count = read(fd, sub_buff, BUFFER_SIZE);
+		if (bytes_count == -1)
 		{
-			free(buff);
+			free (sub_buff);
+			free (buff);
 			return (NULL);
 		}
-		buff[r] = '\0';
-		line = ft_strjoin_gnl(line, buff);
-		i++;
+		sub_buff[bytes_count] = '\0';
+		buff = ft_join_and_free(buff, sub_buff);
+		if (ft_strchr(buff, '\n'))
+			break ;
 	}
-	free(buff);
-	buff = get_res(line);
-	line = get_line(line);
+	free (sub_buff);
 	return (buff);
+}
+
+/*
+this function is used to store the rest of the file, if it exists, so it 
+assigns a ft_strlen - i, where i is the first line to copy, and the rest 
+I want to store for my static variable to continue reading in case the 
+function is called with a loop.
+*/
+char	*rest_of_file(char *buffer)
+{
+	int		i;
+	int		j;
+	char	*sub_buffer;
+
+	i = 0;
+	if (!buffer)
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
+	{
+		free (buffer);
+		return (NULL);
+	}
+	sub_buffer = ft_calloc(ft_strlen(buffer) - i + 1, 1);
+	i++;
+	j = 0;
+	while (buffer[i])
+		sub_buffer[j++] = buffer [i++];
+	free (buffer);
+	return (sub_buffer);
+}
+
+/*
+the function get_next_line makes first a call to read_and_save, which r
+eturns the number of characters defined by BUFFER_SIZE in a char * type 
+variable, after checking if such information exists in the variable, it is 
+passed by the function check_line, which copies the content of the previous 
+variable in a new one with dynamic memory and it is returned, so that it is our 
+final return value in the function. and finally a call is made to rest_of_file,
+this stores the rest of the file descriptor, in a static variable of type 
+char * so that the function can continue to be called in loop!
+*/
+char	*get_next_line(int fd)
+{
+	char		*line_print;
+	static char	*buffer;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = read_and_save (fd, buffer);
+	if (!buffer)
+		return (NULL);
+	line_print = check_line_gnl(buffer);
+	buffer = rest_of_file(buffer);
+	return (line_print);
 }
