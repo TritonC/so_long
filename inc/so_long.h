@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/20 17:23:46 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:13:17 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_mlx
 	t_data		player;
 	t_coord		coord;
 	t_name		name;
+	t_coord		exit;
 }				t_mlx;
 
 void	check_create_map(char *file, t_mlx *mlx);
