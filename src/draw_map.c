@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 23:45:11 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 23:58:46 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void	draw_map(t_mlx *mlx)
 	{
 		coords.y = -1;
 		while (++coords.y < mlx->coord.y)
-		{
 			draw_map_util(mlx, coords);
-		}
 	}
 	mlx->map[mlx->player.y + 1][mlx->player.x] = '0';
 	map_clean(mlx, mlx->player.x, mlx->player.y + 1);

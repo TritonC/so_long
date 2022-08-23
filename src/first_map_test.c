@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 23:03:15 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:55:41 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ void	img_name(t_mlx *mlx, char c, int pos, int frame_max)
 
 void	init_game(t_mlx *mlx)
 {
+	mlx->time = 0;
 	mlx->player.frame = 0;
 	mlx->init = mlx_init();
 	mlx->player.file = malloc(21);
 	ft_strlcpy(mlx->player.file, "asset/player_N00.xpm", 21);
+	mlx->ball.file = malloc(15);
+	ft_strlcpy(mlx->ball.file, "Renders/00.xpm", 15);
 	mlx->win = mlx_new_window(mlx->init, mlx->coord.x * PI, mlx->coord.y * PI,
-			"so_long_failure");
+			"so_long");
 	draw_map(mlx);
 }
 
@@ -42,5 +45,6 @@ int	main(int argc, char **argv)
 	create_map(argv[1], &mlx);
 	init_game(&mlx);
 	mlx_key_hook(mlx.win, key_hook_esc, &mlx);
+	mlx_loop_hook(mlx.init, animations, &mlx);
 	mlx_loop(mlx.init);
 }

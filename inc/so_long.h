@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 18:35:45 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:54:26 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ typedef struct s_coord
 	int	y;
 }	t_coord;
 
-typedef struct s_name
-{
-	char	player[22];
-}	t_name;
-
 typedef struct s_data
 {
 	int		x;
@@ -36,17 +31,18 @@ typedef struct s_data
 	int		frame;
 	char	*file;
 }	t_data;
+
 typedef struct s_mlx
 {
 	void		*init;
 	void		*win;
 	void		*img;
 	char		**map;
-	int			movements;
+	int			time;
 	t_data		player;
 	t_coord		coord;
-	t_name		name;
 	t_coord		exit;
+	t_data		ball;
 }				t_mlx;
 
 void	check_create_map(char *file, t_mlx *mlx);
@@ -64,6 +60,7 @@ void	player_west(t_mlx *mlx, int key);
 void	player_south(t_mlx *mlx, int key);
 void	player_north(t_mlx *mlx, int key);
 void	player_east(t_mlx *mlx, int key);
+int		animations(t_mlx *mlx);
 
 # define PI 64
 # ifdef OSX
