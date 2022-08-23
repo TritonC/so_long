@@ -6,32 +6,20 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/20 15:35:30 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:38:53 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	img_name(t_mlx *mlx, char c, int pos)
+void	img_name(t_mlx *mlx, char c, int pos, int frame_max)
 {
-	mlx->name.player[pos] = c;
-	mlx->name.player[15] = '0' + mlx->movements;
-	if (mlx->movements < 2)
-		mlx->movements++;
+	mlx->player.file[pos] = c;
+	mlx->player.file[15] = '0' + mlx->player.frame;
+	if (mlx->player.frame < frame_max)
+		mlx->player.frame++;
 	else
-		mlx->movements = 0;
-}
-
-void	put_name(char *name_replace, char *file)
-{
-	int	count;
-
-	count = -1;
-	while (file[++count])
-	{
-		name_replace[count] = file[count];
-	}
-	name_replace[count] = '\0';
+		mlx->player.frame = 0;
 }
 
 void	init_game(t_mlx *mlx)
@@ -39,13 +27,14 @@ void	init_game(t_mlx *mlx)
 	int	x;
 
 	x = -1;
-	mlx->movements = 0;
+	mlx->player.frame = 0;
 	mlx->init = mlx_init();
-	put_name(mlx->name.player, "asset/player_N00.xpm");
-	mlx->win = mlx_new_window(mlx->init, mlx->coord.x * 64, mlx->coord.y * 64,
+	mlx->player.file = malloc(21);
+	ft_strlcpy(mlx->player.file, "asset/player_N00.xpm", 21);
+	mlx->win = mlx_new_window(mlx->init, mlx->coord.x * PI, mlx->coord.y * PI,
 			"so_long_failure");
 	draw_map(mlx);
-	mlx->img = mlx_xpm_file_to_image(mlx->init, mlx->name.player, &x, &x);
+	mlx->img = mlx_xpm_file_to_image(mlx->init, mlx->player.file, &x, &x);
 	mlx_put_image_to_window(mlx->init, mlx->win, mlx->img, mlx->coord.x,
 		mlx->coord.y);
 }

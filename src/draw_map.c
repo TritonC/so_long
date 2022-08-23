@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 15:15:38 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:49:19 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	draw_map(t_mlx *mlx)
 		coords.y = -1;
 		while (++coords.y < mlx->coord.y)
 		{
+			mlx->img = choose_img(mlx->init, '0');
+			mlx_put_image_to_window(mlx->init, mlx->win,
+				mlx->img, coords.x * PI, coords.y * PI);
 			if (mlx->map[coords.y][coords.x] == 'P')
 			{
 				mlx->player.x = coords.x;

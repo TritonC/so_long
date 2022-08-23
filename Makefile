@@ -4,7 +4,7 @@ CC		= gcc
 
 CFLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
 
-SRCS	= map_validator.c utils.c draw_map.c first_map_test.c hooks.c
+SRCS	= move.c map_validator.c utils.c draw_map.c first_map_test.c hooks.c
 
 OBJS	= ${SRCS:.c=.o}
 
