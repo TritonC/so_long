@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 01:37:33 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 09:35:57 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_game(t_mlx *mlx)
 {
 	mlx->time = 0;
 	mlx->player.frame = 0;
+	mlx->move = 0;
 	mlx->init = mlx_init();
 	mlx->player.file = malloc(21);
 	ft_strlcpy(mlx->player.file, "asset/player_N00.xpm", 21);

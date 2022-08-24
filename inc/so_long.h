@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 00:54:26 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 09:20:22 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_mlx
 	void		*img;
 	char		**map;
 	int			time;
+	int			move;
 	t_data		player;
 	t_coord		coord;
 	t_coord		exit;

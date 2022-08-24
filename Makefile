@@ -49,18 +49,18 @@ INCLUDES = -I ./${LIBFT}inc -I ./${MLX} -I ./inc
 all: ${NAME}
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
-	${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@ 
+	@${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@ 
 
 $(NAME): ${LIBFT_NAME} ${MLX_NAME} ${OBJS_DIR} ${OBJS_PATHS} 
-	${CC} ${CFLAGS} ${LIB_LNK} ${MLX_LNK} ${OBJS_PATHS} -o ${NAME} ${LIBS}
+	@${CC} ${CFLAGS} ${LIB_LNK} ${MLX_LNK} ${OBJS_PATHS} -o ${NAME} ${LIBS}
 
 ${LIBFT_NAME} :
 	make -C ${LIBFT}
-	cp ${LIBFT}/${LIBFT_NAME} .
+	@cp ${LIBFT}/${LIBFT_NAME} .
 
 ${MLX_NAME} :
-	make -C ${MLX}
-	cp ${MLX}/${MLX_NAME} .
+	@make -C ${MLX}
+	@cp ${MLX}/${MLX_NAME} .
 
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR) 2> /dev/null
