@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:30:14 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 01:25:15 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:35:32 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,19 @@ void	img_name_animation(t_data *data, int pos)
 	}
 }
 
+void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords)
+{
+	int	x;
+
+	mlx->img = mlx_xpm_file_to_image(mlx, file, &x, &x);
+	mlx_put_image_to_window(mlx->init, mlx->win,
+		mlx->img, coords.x * PI, coords.y * PI);
+	mlx_destroy_image(mlx->init, mlx->img);
+}
+
 int	animations(t_mlx *mlx)
 {
 	t_coord	coords;
-	int		x;
 
 	coords.x = -1;
 	if (!(mlx->time++ % 1000))
@@ -42,13 +51,11 @@ int	animations(t_mlx *mlx)
 			{
 				if (mlx->map[coords.y][coords.x] == 'C')
 				{
-					mlx->img = choose_img(mlx->init, '0');
-					mlx_put_image_to_window(mlx->init, mlx->win,
-						mlx->img, coords.x * PI, coords.y * PI);
-					mlx->img = mlx_xpm_file_to_image(mlx, mlx->ball.file, &x, &x);
-					mlx_put_image_to_window(mlx->init, mlx->win,
-						mlx->img, coords.x * PI, coords.y * PI);
+					put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
+					put_and_destroy(mlx, mlx->ball.file, coords);
 					img_name_animation(&mlx->ball, 9);
+					if (mlx->player.x == coords.x && mlx->player.y == coords.y)
+						put_and_destroy(mlx, mlx->player.file, coords);
 				}
 			}
 		}

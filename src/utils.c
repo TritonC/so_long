@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:47:47 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 01:31:55 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:31:51 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	player_move(t_mlx *mlx)
 
 void	map_clean(t_mlx *mlx, int x, int y)
 {
-	mlx->img = choose_img(mlx->init, '0');
-	mlx_put_image_to_window(mlx->init, mlx->win, mlx->img, x * PI,
-		y * PI);
-	mlx->img = choose_img(mlx->init, mlx->map[y][x]);
-	mlx_put_image_to_window(mlx->init, mlx->win, mlx->img, x * PI,
-		y * PI);
+	t_coord	coords;
+
+	coords.x = x;
+	coords.y = y;
+	put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
+	put_and_destroy(mlx, choose_filename(mlx, mlx->map[y][x]), coords);
 }
 
 int	exit_check(char **map)

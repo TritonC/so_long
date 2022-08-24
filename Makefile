@@ -2,7 +2,7 @@ NAME	= so_long
 
 CC		= gcc
 
-CFLAGS	= -Wall -Werror -Wextra  -g3 #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra  -g3 -fsanitize=address
 
 SRCS	= animation.c move.c map_validator.c utils.c draw_map.c first_map_test.c hooks.c
 

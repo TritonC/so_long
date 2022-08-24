@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 23:58:46 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:23:04 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,23 @@ void	*choose_img(void *mlx, char c)
 		return (mlx_xpm_file_to_image(mlx, "asset/tile00.xpm", &x, &x));
 }
 
+char	*choose_filename(t_mlx *mlx, char c)
+{
+	if (c == '1')
+		return (WALL);
+	else if (c == 'E')
+		return (STONE);
+	else if (c == 'C')
+		return (mlx->ball.file);
+	else if (c == 'L')
+		return (LADDER);
+	else
+		return (FLOOR);
+}
+
 void	draw_map_util(t_mlx *mlx, t_coord coords)
 {
-	mlx->img = choose_img(mlx->init, '0');
-	mlx_put_image_to_window(mlx->init, mlx->win,
-		mlx->img, coords.x * PI, coords.y * PI);
+	put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
 	if (mlx->map[coords.y][coords.x] == 'P')
 	{
 		mlx->player.x = coords.x;
@@ -44,11 +56,8 @@ void	draw_map_util(t_mlx *mlx, t_coord coords)
 		mlx->exit.y = coords.y;
 	}
 	if (mlx->map[coords.y][coords.x] != 'P')
-	{
-		mlx->img = choose_img(mlx->init, mlx->map[coords.y][coords.x]);
-		mlx_put_image_to_window(mlx->init, mlx->win,
-			mlx->img, coords.x * PI, coords.y * PI);
-	}
+		put_and_destroy(mlx,
+			choose_filename(mlx, mlx->map[coords.y][coords.x]), coords);
 }
 
 void	draw_map(t_mlx *mlx)

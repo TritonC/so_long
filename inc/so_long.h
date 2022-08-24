@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 09:20:22 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 12:23:35 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <mlx.h>
+# define LADDER "./asset/ladder.xpm"
+# define STONE "./asset/stone.xpm"
+# define FLOOR "./asset/tile00.xpm"
+# define WALL "./asset/tile01.xpm"
 
 typedef struct s_coord
 {
@@ -62,6 +66,8 @@ void	player_south(t_mlx *mlx, int key);
 void	player_north(t_mlx *mlx, int key);
 void	player_east(t_mlx *mlx, int key);
 int		animations(t_mlx *mlx);
+void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords);
+char	*choose_filename(t_mlx *mlx, char c);
 
 # define PI 64
 # ifdef OSX
