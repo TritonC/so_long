@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:30:14 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 17:13:49 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:04:54 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	animations(t_mlx *mlx)
 				{
 					put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
 					put_and_destroy(mlx, mlx->ball.file, coords);
-					img_name_animation(&mlx->ball, 9);
+					img_name_animation(&mlx->ball, 7);
 					if (mlx->player.x == coords.x && mlx->player.y == coords.y)
 						put_and_destroy(mlx, mlx->player.file, coords);
 				}
