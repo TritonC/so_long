@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 19:04:40 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/28 12:58:01 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	init_game(t_mlx *mlx)
 	mlx->player.frame = 0;
 	mlx->move = 0;
 	mlx->init = mlx_init();
-	mlx->player.file = malloc(21);
-	ft_strlcpy(mlx->player.file, "asset/player_N00.xpm", 21);
-	mlx->ball.file = malloc(13);
-	ft_strlcpy(mlx->ball.file, "asset/00.xpm", 13);
+	mlx->sta_enemie.time = 0;
+	mlx->sta_enemie.file = dinamic_copy("asset/sleep00.xpm");
+	mlx->player.file = dinamic_copy("asset/player_N00.xpm");
+	mlx->ball.file = dinamic_copy("asset/00.xpm");
 	mlx->win = mlx_new_window(mlx->init, mlx->coord.x * PI, mlx->coord.y * PI,
 			"so_long");
 	draw_map(mlx);

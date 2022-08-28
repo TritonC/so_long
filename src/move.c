@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:09:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 09:20:18 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/28 13:14:00 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	player_north(t_mlx *mlx, int key)
 		mlx->player.y -= 1;
 		mlx->move += 1;
 	}
+	if (key == KEY_W && mlx->map[mlx->player.y + 1][mlx->player.x] == 'S')
+	{
+		ft_printf("You lose!!!!!\n");
+		exit(EXIT_SUCCESS);
+	}
 }
 
 void	player_south(t_mlx *mlx, int key)
@@ -31,6 +36,11 @@ void	player_south(t_mlx *mlx, int key)
 		img_name(mlx, 'S', 13, 2);
 		mlx->player.y += 1;
 		mlx->move += 1;
+	}
+	if (key == KEY_S && mlx->map[mlx->player.y + 1][mlx->player.x] == 'S')
+	{
+		ft_printf("You lose!!!!!\n");
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -43,6 +53,11 @@ void	player_east(t_mlx *mlx, int key)
 		mlx->player.x -= 1;
 		mlx->move += 1;
 	}
+	if (key == KEY_A && mlx->map[mlx->player.y + 1][mlx->player.x] == 'S')
+	{
+		ft_printf("You lose!!!!!\n");
+		exit(EXIT_SUCCESS);
+	}
 }
 
 void	player_west(t_mlx *mlx, int key)
@@ -53,5 +68,10 @@ void	player_west(t_mlx *mlx, int key)
 		img_name(mlx, 'E', 13, 2);
 		mlx->player.x += 1;
 		mlx->move += 1;
+	}
+	if (key == KEY_D && mlx->map[mlx->player.y + 1][mlx->player.x] == 'S')
+	{
+		ft_printf("You lose!!!!!\n");
+		exit(EXIT_SUCCESS);
 	}
 }

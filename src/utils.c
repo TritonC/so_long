@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:47:47 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 11:31:51 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/28 12:45:13 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,22 @@ void	free_write_exit(const char *str, char **map, char *lane, int e)
 		exit(e);
 }
 
-int	close_win(t_mlx *mlx)
+char	*dinamic_copy(char *file)
 {
-	mlx_clear_window(mlx->init, mlx->win);
-	mlx_destroy_window(mlx->init, mlx->win);
-	free_write_exit(NULL, mlx->map, NULL, 1);
-	return (0);
+	char	*temp;
+	int		count;
+
+	count = -1;
+	temp = ft_calloc(ft_strlen(file) + 1, 1);
+	while (file[++count])
+		temp[count] = file[count];
+	return (temp);
 }
 
 void	player_move(t_mlx *mlx)
 {
 	int	x;
 
-/*	mlx->img = mlx_xpm_file_to_image(mlx->init, mlx->player.file, &x, &x);
-	mlx_put_image_to_window(mlx->init, mlx->win, mlx->img, mlx->player.x * PI,
-		mlx->player.y * PI);
-
-	mlx->img = mlx_xpm_file_to_image(mlx->init, mlx->player.file, &x, &x);
-	mlx_put_image_to_window(mlx->init, mlx->win, mlx->img, mlx->player.x * PI,
-		mlx->player.y * PI);
-*/
 	mlx->img = mlx_xpm_file_to_image(mlx->init, mlx->player.file, &x, &x);
 	mlx_put_image_to_window(mlx->init, mlx->win, mlx->img, mlx->player.x * PI,
 		mlx->player.y * PI);

@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/23 23:56:56 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/28 12:22:46 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	check_line(char *lane, int len_lane)
 	while (lane[i] && lane[i] != '\n')
 	{
 		if (lane[i] != '1' && lane[i] != 'E' && lane[i] != 'P'
-			&& lane[i] != 'C' && lane[i] != '0')
+			&& lane[i] != 'C' && lane[i] != '0' && lane[i] != 'S')
 			return (0);
 		i++;
 	}

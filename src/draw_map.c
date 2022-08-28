@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/24 12:23:04 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/28 12:44:31 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*choose_filename(t_mlx *mlx, char c)
 		return (mlx->ball.file);
 	else if (c == 'L')
 		return (LADDER);
+	else if (c == 'S')
+		return (mlx->sta_enemie.file);
 	else
 		return (FLOOR);
 }
@@ -54,6 +56,11 @@ void	draw_map_util(t_mlx *mlx, t_coord coords)
 	{
 		mlx->exit.x = coords.x;
 		mlx->exit.y = coords.y;
+	}
+	if (mlx->map[coords.y][coords.x] == 'S')
+	{
+		mlx->sta_enemie.x = coords.x;
+		mlx->sta_enemie.y = coords.y;
 	}
 	if (mlx->map[coords.y][coords.x] != 'P')
 		put_and_destroy(mlx,
