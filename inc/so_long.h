@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 15:27:27 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:26:29 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	img_name(t_mlx *mlx, char c, int pos, int frame_max);
 void	*choose_img(void *mlx, char c);
 void	put_img(t_mlx *mlx, t_data pos);
 void	player_move(t_mlx *mlx);
+t_data	choose_data(t_mlx *mlx, int x, int y);
 void	map_clean(t_mlx *mlx, int x, int y);
 int		exit_check(char **map);
 void	player_west(t_mlx *mlx, int key);

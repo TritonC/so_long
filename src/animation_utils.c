@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:31:29 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 15:59:42 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:38:32 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ int	enemy_count(char **map)
 	return (count);
 }
 
-void	move_util(t_mlx *mlx, t_data *data, t_enemy *enemy, int dx, int dy)
+void	move_util(t_mlx *mlx, t_enemy *enemy, int dx, int dy)
 {
+	t_data	data;
+
+	data = choose_data(mlx, dx, dy);
 	if (!(enemy->pos.x - dx == mlx->player.x
 			&& enemy->pos.y - dy == mlx->player.y + 1))
 		map_clean(mlx, enemy->pos.x - dx, enemy->pos.y - dy);
@@ -41,10 +44,10 @@ void	move_util(t_mlx *mlx, t_data *data, t_enemy *enemy, int dx, int dy)
 		map_clean(mlx, enemy->pos.x + dx, enemy->pos.y + dy);
 	if (ft_strchr("1EC", mlx->map[enemy->pos.y + dy][enemy->pos.x + dx]))
 		enemy->addr = !enemy->addr;
-	data->frame = enemy->frame % 3;
-	image_animate(mlx, data, enemy->pos.x * 64
-		+ dx * (data->frame - 1) * 21, enemy->pos.y * 64
-		+ dy * (data->frame - 1) * 21);
+	data.frame = enemy->frame % 3;
+	image_animate(mlx, &data, enemy->pos.x * 64
+		+ dx * (data.frame - 1) * 21, enemy->pos.y * 64
+		+ dy * (data.frame - 1) * 21);
 	enemy->frame++;
 }
 
@@ -54,13 +57,13 @@ void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 	if (mlx->player.x == enemy->pos.x && mlx->player.y == enemy->pos.y)
 		put_and_destroy(mlx, mlx->player.file, enemy->pos);
 	if (!enemy->addr && enemy->dir == 0)
-		move_util(mlx, &mlx->h_enemy, enemy, -1, 0);
+		move_util(mlx, enemy, -1, 0);
 	else if (enemy->addr && enemy->dir == 0)
-		move_util(mlx, &mlx->r_enemy, enemy, 1, 0);
+		move_util(mlx, enemy, 1, 0);
 	else if (!enemy->addr && enemy->dir == 1)
-		move_util(mlx, &mlx->u_enemy, enemy, 0, -1);
+		move_util(mlx, enemy, 0, -1);
 	else if (enemy->addr && enemy->dir == 1)
-		move_util(mlx, &mlx->d_enemy, enemy, 0, 1);
+		move_util(mlx, enemy, 0, 1);
 	if (enemy->frame % 3 == 0 && !enemy->addr && enemy->dir == 0)
 		enemy->pos.x--;
 	if (enemy->frame % 3 == 0 && enemy->addr && enemy->dir == 0)
