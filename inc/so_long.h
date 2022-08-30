@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 16:26:29 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:03:23 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_enemy	*enemy_init(char **map);
 void	img_name_animation(t_data *data, int pos);
 void	images_load(t_mlx *mlx, t_data *images, char *file, int frames);
 void	image_animate(t_mlx *mlx, t_data *images, int x, int y);
+void	img_name_animation(t_data *data, int pos);
 
 # define PI 64
 # ifdef OSX

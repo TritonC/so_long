@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 15:27:16 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:34:40 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_game(t_mlx *mlx)
 	mlx->enemies = enemy_init(mlx->map);
 	images_load(mlx, &mlx->u_enemy, "asset/snorlaxN00.xpm", 2);
 	images_load(mlx, &mlx->d_enemy, "asset/snorlaxS00.xpm", 2);
-	images_load(mlx, &mlx->player, "asset/player_N00.xpm", 2);
+	images_load(mlx, &mlx->player, "playe/player_N00.xpm", 2);
 	images_load(mlx, &mlx->sta_enemy, "asset/sleep00.xpm", 3);
 	images_load(mlx, &mlx->ball, "asset/00.xpm", 20);
 	images_load(mlx, &mlx->h_enemy, "asset/snorlaxW00.xpm", 2);

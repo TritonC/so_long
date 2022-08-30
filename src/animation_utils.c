@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:31:29 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 16:38:32 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:44:43 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	move_util(t_mlx *mlx, t_enemy *enemy, int dx, int dy)
 
 	data = choose_data(mlx, dx, dy);
 	if (!(enemy->pos.x - dx == mlx->player.x
-			&& enemy->pos.y - dy == mlx->player.y + 1))
+			&& enemy->pos.y - dy == mlx->player.y))
 		map_clean(mlx, enemy->pos.x - dx, enemy->pos.y - dy);
 	if (!(enemy->pos.x + dx == mlx->player.x
-			&& enemy->pos.y + dy == mlx->player.y + 1))
+			&& enemy->pos.y + dy == mlx->player.y))
 		map_clean(mlx, enemy->pos.x + dx, enemy->pos.y + dy);
-	if (ft_strchr("1EC", mlx->map[enemy->pos.y + dy][enemy->pos.x + dx]))
+	if (ft_strchr("1ECL", mlx->map[enemy->pos.y + dy][enemy->pos.x + dx]))
 		enemy->addr = !enemy->addr;
 	data.frame = enemy->frame % 3;
 	image_animate(mlx, &data, enemy->pos.x * 64
@@ -72,7 +72,7 @@ void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 		enemy->pos.y--;
 	if (enemy->frame % 3 == 0 && enemy->addr && enemy->dir == 1)
 		enemy->pos.y++;
-	if (enemy->pos.x == mlx->player.x && enemy->pos.y == mlx->player.y + 1)
+	if (enemy->pos.x == mlx->player.x && enemy->pos.y == mlx->player.y)
 	{
 		printf("you die");
 		exit(EXIT_SUCCESS);

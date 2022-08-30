@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:22:22 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 16:39:25 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:03:17 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,19 @@ t_data	choose_data(t_mlx *mlx, int x, int y)
 		return (mlx->d_enemy);
 	else
 		return (mlx->u_enemy);
+}
+
+void	img_name_animation(t_data *data, int pos)
+{
+	data->file[pos] = '0' + data->frame;
+	if (data->frame >= 10)
+	{
+		data->file[pos - 1] = '0' + data->frame / 10;
+		data->file[pos] = '0' + data->frame % 10;
+	}
+	else
+	{
+		data->file[pos - 1] = '0';
+		data->file[pos] = '0' + data->frame;
+	}
 }

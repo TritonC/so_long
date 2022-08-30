@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/29 17:54:59 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 17:50:27 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_map_util(t_mlx *mlx, t_coord coords)
 	if (mlx->map[coords.y][coords.x] == 'P')
 	{
 		mlx->player.x = coords.x;
-		mlx->player.y = coords.y - 1;
+		mlx->player.y = coords.y;
 	}
 	if (mlx->map[coords.y][coords.x] == 'E')
 	{
@@ -83,7 +83,5 @@ void	draw_map(t_mlx *mlx)
 		while (++coords.y < mlx->coord.y)
 			draw_map_util(mlx, coords);
 	}
-	mlx->map[mlx->player.y + 1][mlx->player.x] = '0';
-	map_clean(mlx, mlx->player.x, mlx->player.y + 1);
 	player_move(mlx);
 }
