@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 01:58:08 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:27:16 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ void	init_game(t_mlx *mlx)
 	mlx->player.frame = 0;
 	mlx->move = 0;
 	mlx->init = mlx_init();
-	mlx->sta_enemy.time = 0;
-	mlx->h_enemy.time = 0;
-//	mlx->h_enemy.file = dinamic_copy("asset/snorlaxW00.xpm");
-//	mlx->sta_enemy.file = dinamic_copy("asset/sleep00.xpm");
-	//mlx->ball.file = dinamic_copy("asset/00.xpm");
+	mlx->enemies = enemy_init(mlx->map);
+	images_load(mlx, &mlx->u_enemy, "asset/snorlaxN00.xpm", 2);
+	images_load(mlx, &mlx->d_enemy, "asset/snorlaxS00.xpm", 2);
 	images_load(mlx, &mlx->player, "asset/player_N00.xpm", 2);
 	images_load(mlx, &mlx->sta_enemy, "asset/sleep00.xpm", 3);
 	images_load(mlx, &mlx->ball, "asset/00.xpm", 20);

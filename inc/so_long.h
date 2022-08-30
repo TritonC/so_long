@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/29 23:50:34 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:27:27 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <mlx.h>
+# include <math.h>
 # define LADDER "./asset/ladder.xpm"
 # define STONE "./asset/stone.xpm"
 # define FLOOR "./asset/tile00.xpm"
@@ -41,6 +42,14 @@ typedef struct s_data
 	int		time;
 }	t_data;
 
+typedef struct s_enemy
+{
+	t_coord	pos;
+	int		dir;
+	int		addr;
+	int		frame;
+}	t_enemy;
+
 typedef struct s_mlx
 {
 	void		*init;
@@ -56,11 +65,16 @@ typedef struct s_mlx
 	t_data		sta_enemy;
 	t_data		h_enemy;
 	t_data		r_enemy;
+	t_data		u_enemy;
+	t_data		d_enemy;
+	t_enemy		*enemies;
 }				t_mlx;
 
 void	check_create_map(char *file, t_mlx *mlx);
+void	move_enemy(t_mlx *mlx, t_enemy *enemy);
 void	draw_map(t_mlx *mlx);
 int		key_hook_esc(int key, t_mlx *mlx);
+int		enemy_count(char **map);
 void	free_write_exit(const char *str, char **fr1, char *fr2, int e);
 void	create_map(char *file, t_mlx *mlx);
 void	img_name(t_mlx *mlx, char c, int pos, int frame_max);
@@ -77,6 +91,7 @@ int		animations(t_mlx *mlx);
 void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords);
 char	*choose_filename(t_mlx *mlx, char c);
 char	*dinamic_copy(char *file);
+t_enemy	*enemy_init(char **map);
 void	img_name_animation(t_data *data, int pos);
 void	images_load(t_mlx *mlx, t_data *images, char *file, int frames);
 void	image_animate(t_mlx *mlx, t_data *images, int x, int y);
