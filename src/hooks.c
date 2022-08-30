@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:25:09 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 18:18:27 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:54:03 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	player_movement_count(t_mlx *mlx, int key)
 
 	if (key == KEY_ESC)
 		exit(EXIT_SUCCESS);
+	collision(mlx);
 	player_north(mlx, key);
 	player_south(mlx, key);
 	player_east(mlx, key);
 	player_west(mlx, key);
-	collision(mlx);
 	move_count = ft_itoa(mlx->move);
 	map_clean(mlx, 0, 0);
 	mlx_string_put(mlx->init, mlx->win, 19, 18, 0, move_count);
