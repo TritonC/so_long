@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 18:18:36 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/30 20:43:20 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	img_name_animation(t_data *data, int pos);
 void	images_load(t_mlx *mlx, t_data *images, char *file, int frames);
 void	image_animate(t_mlx *mlx, t_data *images, int x, int y);
 void	img_name_animation(t_data *data, int pos);
-void	collision(t_mlx *mlx);
 
 # define PI 64
 # ifdef OSX
