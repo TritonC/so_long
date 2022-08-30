@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/28 12:57:37 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/29 23:50:34 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ typedef struct s_coord
 
 typedef struct s_data
 {
+	void	**images;
+	t_coord	pos;
+	int		dir;
 	int		x;
 	int		y;
+	int		max;
 	int		frame;
 	char	*file;
 	int		time;
@@ -49,7 +53,9 @@ typedef struct s_mlx
 	t_coord		coord;
 	t_coord		exit;
 	t_data		ball;
-	t_data		sta_enemie;
+	t_data		sta_enemy;
+	t_data		h_enemy;
+	t_data		r_enemy;
 }				t_mlx;
 
 void	check_create_map(char *file, t_mlx *mlx);
@@ -72,6 +78,8 @@ void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords);
 char	*choose_filename(t_mlx *mlx, char c);
 char	*dinamic_copy(char *file);
 void	img_name_animation(t_data *data, int pos);
+void	images_load(t_mlx *mlx, t_data *images, char *file, int frames);
+void	image_animate(t_mlx *mlx, t_data *images, int x, int y);
 
 # define PI 64
 # ifdef OSX

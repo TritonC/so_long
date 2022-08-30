@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:47:47 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/28 12:45:13 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/08/29 23:22:02 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	map_clean(t_mlx *mlx, int x, int y)
 	coords.x = x;
 	coords.y = y;
 	put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
-	put_and_destroy(mlx, choose_filename(mlx, mlx->map[y][x]), coords);
+	if (mlx->map[y][x] != 'C')
+		put_and_destroy(mlx, choose_filename(mlx, mlx->map[y][x]), coords);
+	else
+		image_animate(mlx, &mlx->ball, x * 64, y * 64);
 }
 
 int	exit_check(char **map)
