@@ -6,11 +6,14 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:47:47 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/29 23:22:02 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:15:27 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+
+// this function is the more usefull one, this function just free the pointer 
+// send as parameter and print the message send it by parameter too
 
 void	free_write_exit(const char *str, char **map, char *lane, int e)
 {
@@ -34,6 +37,9 @@ void	free_write_exit(const char *str, char **map, char *lane, int e)
 		exit(e);
 }
 
+// just a quick access to make a dinamic copy from sprite names
+// checking the errors at the same time
+
 char	*dinamic_copy(char *file)
 {
 	char	*temp;
@@ -41,6 +47,8 @@ char	*dinamic_copy(char *file)
 
 	count = -1;
 	temp = ft_calloc(ft_strlen(file) + 1, 1);
+	if (!temp)
+		free_write_exit("sprite error", NULL, temp, 1);
 	while (file[++count])
 		temp[count] = file[count];
 	return (temp);
@@ -55,6 +63,9 @@ void	player_move(t_mlx *mlx)
 		mlx->player.y * PI);
 }
 
+// the more spammable function the game, this clean the pixel
+// using coords, clean (destroy the image, and put another one to replace it
+
 void	map_clean(t_mlx *mlx, int x, int y)
 {
 	t_coord	coords;
@@ -67,6 +78,9 @@ void	map_clean(t_mlx *mlx, int x, int y)
 	else
 		image_animate(mlx, &mlx->ball, x * 64, y * 64);
 }
+
+// with this one, if there's no more collectibles, so the player can now
+// walk through the door and leave
 
 int	exit_check(char **map)
 {

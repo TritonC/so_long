@@ -6,12 +6,13 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:22:22 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 17:03:17 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:17:15 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+// function to find the enemy position
 t_data	choose_data(t_mlx *mlx, int x, int y)
 {
 	if (x == -1 && y == 0)

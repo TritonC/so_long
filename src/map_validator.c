@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 15:33:18 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:17:13 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	check_first_last(char *lane)
 	return (1);
 }
 
+// just a copy from the original realloc, same, is a dinamic copy from a double
+// pointer
 char	**realloc_double(char **map, char *lane)
 {
 	int		count;
@@ -52,6 +54,9 @@ char	**realloc_double(char **map, char *lane)
 	return (ret);
 }
 
+// check if is any wrong character in the map lane
+// easy verification
+
 static int	check_line(char *lane, int len_lane)
 {
 	int	i;
@@ -63,7 +68,7 @@ static int	check_line(char *lane, int len_lane)
 	{
 		if (lane[i] != '1' && lane[i] != 'E' && lane[i] != 'P'
 			&& lane[i] != 'C' && lane[i] != '0' && lane[i] != 'S'
-				&& lane[i] != 'H' && lane[i] != 'V')
+			&& lane[i] != 'H' && lane[i] != 'V')
 			return (0);
 		i++;
 	}

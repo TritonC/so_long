@@ -6,12 +6,14 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:09:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 20:48:02 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:17:15 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+// all this function, are used for the player movement!, are just a bunch
+// of  verification, if the next step is valid just move to this direction
 void	player_north(t_mlx *mlx, int key)
 {
 	t_coord	p;

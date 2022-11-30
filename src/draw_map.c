@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 17:50:27 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:06:35 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	*choose_img(void *mlx, char c)
 		return (mlx_xpm_file_to_image(mlx, "asset/tile00.xpm", &x, &x));
 }
 
+// this function, choose the sprite to put in the image, based on the letter
+
 char	*choose_filename(t_mlx *mlx, char c)
 {
 	if (c == '1')
@@ -43,6 +45,8 @@ char	*choose_filename(t_mlx *mlx, char c)
 	else
 		return (FLOOR);
 }
+
+// function to get position data
 
 void	draw_map_util(t_mlx *mlx, t_coord coords)
 {
@@ -71,6 +75,8 @@ void	draw_map_util(t_mlx *mlx, t_coord coords)
 		put_and_destroy(mlx,
 			choose_filename(mlx, mlx->map[coords.y][coords.x]), coords);
 }
+
+// function to draw the map
 
 void	draw_map(t_mlx *mlx)
 {
