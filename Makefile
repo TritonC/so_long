@@ -4,8 +4,8 @@ CC		= gcc
 
 CFLAGS	= -Wall -Werror -Wextra  -g3 -fsanitize=address
 
-SRCS	= animation.c move.c map_validator.c utils.c draw_map.c first_map_test.c hooks.c \
-		  animation_utils.c animation_option.c
+SRCS	= animation.c move.c map_validator.c utils.c draw_map.c main.c hooks.c \
+		  animation_utils.c animation_option.c newtry.c
 OBJS	= ${SRCS:.c=.o}
 
 SRCS_DIR = src

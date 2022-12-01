@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 20:43:20 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/01 20:11:03 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define STONE "./asset/stone.xpm"
 # define FLOOR "./asset/tile00.xpm"
 # define WALL "./asset/tile01.xpm"
+# define INIT_SCREEN "./asset/opening.xpm"
+# define GAME_OVER "./asset/gameover.xpm"
+# define ENDING "./asset/ending.xpm"
 
 typedef struct s_coord
 {
@@ -77,6 +80,7 @@ int		key_hook_esc(int key, t_mlx *mlx);
 int		enemy_count(char **map);
 void	free_write_exit(const char *str, char **fr1, char *fr2, int e);
 void	create_map(char *file, t_mlx *mlx);
+void	init_game(t_mlx *mlx);
 void	img_name(t_mlx *mlx, char c, int pos, int frame_max);
 void	*choose_img(void *mlx, char c);
 void	put_img(t_mlx *mlx, t_data pos);
@@ -88,6 +92,7 @@ void	player_west(t_mlx *mlx, int key);
 void	player_south(t_mlx *mlx, int key);
 void	player_north(t_mlx *mlx, int key);
 void	player_east(t_mlx *mlx, int key);
+void	relaunch(t_mlx *mlx, int key, int fail);
 int		animations(t_mlx *mlx);
 void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords);
 char	*choose_filename(t_mlx *mlx, char c);
