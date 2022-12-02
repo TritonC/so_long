@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 14:03:55 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:14:27 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	check_line(char *lane, int len_lane, int *error)
 			return (0);
 		i++;
 	}
-	if ((i != len_lane || lane[i - 1] != '1' ) && *error == 2)
+	if (i != len_lane || lane[i - 1] != '1')
 		return (0);
 	return (1);
 }
@@ -119,10 +119,12 @@ void	create_map(char *file, t_mlx *mlx)
 	{
 		mlx->map = realloc_double(mlx->map, lane);
 		if (!check_line(lane, mlx->coord.x, &error))
-			free_write_exit("Error: map error\n", mlx->map, NULL, -1);
+			free_write_exit("Error: map error\n", mlx->map, NULL, 1);
 		lane = get_next_line(fd);
 		mlx->coord.y++;
 	}
+	if (error != 2)
+		free_write_exit("Error: map error\n", mlx->map, NULL, 1);
 	if (mlx->coord.y > 72 || !check_first_last((mlx->map)[mlx->coord.y - 1]))
 		free_write_exit("Error: map error\n", mlx->map, NULL, 1);
 	close(fd);
