@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/01 18:00:12 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:03:55 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**realloc_double(char **map, char *lane)
 // check if is any wrong character in the map lane
 // easy verification
 
-static int	check_line(char *lane, int len_lane)
+static int	check_line(char *lane, int len_lane, int *error)
 {
 	int	i;
 
@@ -66,13 +66,15 @@ static int	check_line(char *lane, int len_lane)
 		return (0);
 	while (lane[i] && lane[i] != '\n')
 	{
+		if (lane[i] == 'P' || lane[i] == 'E')
+			*error += 1;
 		if (lane[i] != '1' && lane[i] != 'E' && lane[i] != 'P'
 			&& lane[i] != 'C' && lane[i] != '0' && lane[i] != 'S'
 			&& lane[i] != 'H' && lane[i] != 'V')
 			return (0);
 		i++;
 	}
-	if (i != len_lane || lane[i - 1] != '1')
+	if ((i != len_lane || lane[i - 1] != '1' ) && *error == 2)
 		return (0);
 	return (1);
 }
@@ -102,7 +104,9 @@ void	create_map(char *file, t_mlx *mlx)
 {
 	int		fd;
 	char	*lane;
+	int		error;
 
+	error = 0;
 	check_file_name(file);
 	fd = open(file, O_RDONLY);
 	lane = get_next_line(fd);
@@ -114,8 +118,8 @@ void	create_map(char *file, t_mlx *mlx)
 	while (lane)
 	{
 		mlx->map = realloc_double(mlx->map, lane);
-		if (!check_line(lane, mlx->coord.x))
-			free_write_exit("Error: map error\n", mlx->map, NULL, 1);
+		if (!check_line(lane, mlx->coord.x, &error))
+			free_write_exit("Error: map error\n", mlx->map, NULL, -1);
 		lane = get_next_line(fd);
 		mlx->coord.y++;
 	}

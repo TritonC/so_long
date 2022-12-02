@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 02:30:11 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/02 13:48:27 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,24 @@ void	init_game(t_mlx *mlx)
 int	main(int argc, char **argv)
 {
 	t_mlx		mlx;
+	t_coord		coord;
+	char		**new_map;
 
 	if (argc != 2)
 		return (ft_printf("Error: argument number invalid\n"));
 	create_map(argv[1], &mlx);
-	init_game(&mlx);
-	map_checker(map_cpy(mlx.map), mlx.player.x, mlx.player.y);
-	mlx_hook(mlx.win, 02, 1L << 0, key_hook_esc, &mlx);
-	mlx_loop_hook(mlx.init, animations, &mlx);
-	mlx_loop(mlx.init);
+	coord.x = 0;
+	coord.y = 0;
+	coord = find_player(mlx.map, coord);
+	new_map = map_checker(map_cpy(mlx.map), coord.y, coord.x);
+	if (map_evaluator(new_map))
+	{
+		init_game(&mlx);
+		mlx_hook(mlx.win, 02, 1L << 0, key_hook_esc, &mlx);
+		mlx_loop_hook(mlx.init, animations, &mlx);
+		mlx_loop(mlx.init);
+	}
+	else
+		ft_printf("error: invalid map\n");
+	return (0);
 }

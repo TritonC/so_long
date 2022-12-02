@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 02:27:46 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/02 13:35:49 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	player_west(t_mlx *mlx, int key);
 void	player_south(t_mlx *mlx, int key);
 void	player_north(t_mlx *mlx, int key);
 void	player_east(t_mlx *mlx, int key);
-void	map_checker(char **map, int i, int j);
+char	**map_checker(char **map, int i, int j);
 void	relaunch(t_mlx *mlx, int key, int fail);
 int		animations(t_mlx *mlx);
 void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords);
@@ -104,6 +104,8 @@ void	images_load(t_mlx *mlx, t_data *images, char *file, int frames);
 void	image_animate(t_mlx *mlx, t_data *images, int x, int y);
 void	img_name_animation(t_data *data, int pos);
 char	**map_cpy(char **map);
+int		map_evaluator(char **map);
+t_coord	find_player(char **map, t_coord coord);
 
 # define PI 64
 # ifdef OSX
