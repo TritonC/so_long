@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/01 23:18:37 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/02 02:30:11 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error: argument number invalid\n"));
 	create_map(argv[1], &mlx);
 	init_game(&mlx);
+	map_checker(map_cpy(mlx.map), mlx.player.x, mlx.player.y);
 	mlx_hook(mlx.win, 02, 1L << 0, key_hook_esc, &mlx);
 	mlx_loop_hook(mlx.init, animations, &mlx);
 	mlx_loop(mlx.init);
