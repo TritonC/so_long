@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 14:14:27 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:17:00 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,8 @@ void	create_map(char *file, t_mlx *mlx)
 		lane = get_next_line(fd);
 		mlx->coord.y++;
 	}
-	if (error != 2)
-		free_write_exit("Error: map error\n", mlx->map, NULL, 1);
-	if (mlx->coord.y > 72 || !check_first_last((mlx->map)[mlx->coord.y - 1]))
+	if (mlx->coord.y > 72 || !check_first_last((mlx->map)[mlx->coord.y - 1])
+		|| error != 2)
 		free_write_exit("Error: map error\n", mlx->map, NULL, 1);
 	close(fd);
 }
