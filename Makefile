@@ -66,9 +66,11 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR) 2> /dev/null
 
 clean:
+		make clean -C ${LIBFT}
 		@${RM} *.a ${OBJS_DIR}/*.o *.dSYM
 
 fclean:		clean
+		make fclean -C ${LIBFT}
 		@${RM} ${NAME}
 
 re:		fclean all
