@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:38:59 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 13:49:03 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:42:47 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,15 @@ int	map_evaluator(char **map)
 	}
 	free_write_exit(NULL, map, NULL, -1);
 	return (1);
+}
+
+void	enemy_data(t_enemy *enemy, int dir, t_coord pos)
+{
+	enemy->frame = 0;
+	enemy->pos.x = pos.y;
+	enemy->pos.y = pos.x;
+	enemy->dir = dir;
+	enemy->addr = 1;
 }
 
 // void	relaunch(t_mlx *mlx, int key, int fail)

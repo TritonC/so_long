@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:22:22 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/11/30 16:17:15 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:14:49 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,14 @@ void	img_name_animation(t_data *data, int pos)
 		data->file[pos - 1] = '0';
 		data->file[pos] = '0' + data->frame;
 	}
+}
+
+void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords)
+{
+	int	x;
+
+	mlx->img = mlx_xpm_file_to_image(mlx, file, &x, &x);
+	mlx_put_image_to_window(mlx->init, mlx->win,
+		mlx->img, coords.x * PI, coords.y * PI);
+	mlx_destroy_image(mlx->init, mlx->img);
 }

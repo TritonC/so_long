@@ -6,21 +6,11 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:30:14 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 17:03:27 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:15:17 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-
-void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords)
-{
-	int	x;
-
-	mlx->img = mlx_xpm_file_to_image(mlx, file, &x, &x);
-	mlx_put_image_to_window(mlx->init, mlx->win,
-		mlx->img, coords.x * PI, coords.y * PI);
-	mlx_destroy_image(mlx->init, mlx->img);
-}
 
 void	images_load(t_mlx *mlx, t_data *images, char *file, int frames)
 {
@@ -63,35 +53,34 @@ void	check_char(t_mlx *mlx, t_data *image, t_coord coords)
 		put_and_destroy(mlx, mlx->player.file, coords);
 }
 
+static void	an_utils(t_mlx *mlx, t_coord c, int *enemy)
+{
+	if (mlx->map[c.y][c.x] == 'C')
+	{
+		check_char(mlx, &mlx->ball, c);
+		mlx->ball.frame--;
+	}
+	else if (mlx->map[c.y][c.x] == 'S' && !(mlx->time % 4000))
+		check_char(mlx, &mlx->sta_enemy, c);
+	else if (ft_strchr("HV", mlx->map[c.y][c.x])
+		&& !(mlx->time % 3000))
+		move_enemy(mlx, &mlx->enemies[enemy[0]++]);
+}
+
 int	animations(t_mlx *mlx)
 {
-	t_coord	coords;
+	t_coord	c;
 	int		enemy;
 
-	coords.x = 0;
+	c.x = 0;
 	enemy = 0;
 	if (!(mlx->time % 1000))
 	{
-		while (++coords.x < mlx->coord.x)
+		while (++c.x < mlx->coord.x)
 		{
-			coords.y = -1;
-			while (++coords.y < mlx->coord.y)
-			{
-				if (mlx->map[coords.y][coords.x] == 'C')
-				{
-					check_char(mlx, &mlx->ball, coords);
-					mlx->ball.frame--;
-				}
-				else if (mlx->map[coords.y][coords.x] == 'S'
-					&& !(mlx->time % 4000))
-					check_char(mlx, &mlx->sta_enemy, coords);
-				else if (ft_strchr("HV", mlx->map[coords.y][coords.x])
-					&& !(mlx->time % 3000))
-				{
-					move_enemy(mlx, &mlx->enemies[enemy]);
-					enemy++;
-				}
-			}
+			c.y = -1;
+			while (++c.y < mlx->coord.y)
+				an_utils(mlx, c, &enemy);
 		}
 		mlx->h_enemy.frame++;
 		mlx->r_enemy.frame++;

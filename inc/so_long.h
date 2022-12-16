@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 13:35:49 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:57:36 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	player_east(t_mlx *mlx, int key);
 char	**map_checker(char **map, int i, int j);
 void	relaunch(t_mlx *mlx, int key, int fail);
 int		animations(t_mlx *mlx);
+void	enemy_data(t_enemy *enemy, int dir, t_coord pos);
 void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords);
 char	*choose_filename(t_mlx *mlx, char c);
 char	*dinamic_copy(char *file);

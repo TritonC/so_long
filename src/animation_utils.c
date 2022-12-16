@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:31:29 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/08/30 20:03:23 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:52:38 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	move_util(t_mlx *mlx, t_enemy *enemy, int dx, int dy)
 	enemy->frame++;
 }
 
-void	move_enemy(t_mlx *mlx, t_enemy *enemy)
+static void	move_asset(t_mlx *mlx, t_enemy *enemy)
 {
 	put_and_destroy(mlx, choose_filename(mlx, '0'), enemy->pos);
 	if (mlx->player.x == enemy->pos.x && mlx->player.y == enemy->pos.y)
@@ -69,6 +69,11 @@ void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 		printf("you die");
 		exit(EXIT_SUCCESS);
 	}
+}
+
+void	move_enemy(t_mlx *mlx, t_enemy *enemy)
+{
+	move_asset(mlx, enemy);
 	if (enemy->frame % 3 == 0 && !enemy->addr && enemy->dir == 0)
 		enemy->pos.x--;
 	if (enemy->frame % 3 == 0 && enemy->addr && enemy->dir == 0)
@@ -82,15 +87,7 @@ void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 		printf("you die");
 		exit(EXIT_SUCCESS);
 	}
-}
-
-void	enemy_data(t_enemy *enemy, int dir, t_coord pos)
-{
-	enemy->frame = 0;
-	enemy->pos.x = pos.y;
-	enemy->pos.y = pos.x;
-	enemy->dir = dir;
-	enemy->addr = 1;
+	enemy++;
 }
 
 t_enemy	*enemy_init(char **map)
