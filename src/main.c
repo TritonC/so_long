@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 14:07:53 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:06:04 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char **argv)
 		init_game(&mlx);
 		mlx_hook(mlx.win, 02, 1L << 0, key_hook_esc, &mlx);
 		mlx_loop_hook(mlx.init, animations, &mlx);
+		mlx_hook(mlx.win, 17, 0, ft_exit, &mlx);
 		mlx_loop(mlx.init);
 	}
 	else

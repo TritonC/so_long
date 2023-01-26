@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:25:09 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/01 23:21:35 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:06:11 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ int	key_hook_esc(int key, t_mlx *mlx)
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
+}
+
+int	ft_exit(void)
+{
+	exit(EXIT_SUCCESS);
+	return (17);
 }
