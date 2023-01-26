@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:31:29 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/16 18:52:38 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:21:49 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 		enemy->pos.y++;
 	if (enemy->pos.x == mlx->player.x && enemy->pos.y == mlx->player.y)
 	{
-		printf("you die");
+		printf("you die\n");
 		exit(EXIT_SUCCESS);
 	}
 	enemy++;
