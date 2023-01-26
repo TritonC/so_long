@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:30:14 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/16 19:15:17 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:23:11 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,3 @@ int	animations(t_mlx *mlx)
 	mlx->time++;
 	return (0);
 }
-/*
-void	horizontal_enemy(t_mlx *mlx)
-{
-	t_coord	coords;
-
-
-}
-*/
