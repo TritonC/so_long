@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:24:58 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 11:06:04 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:00:41 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ int	main(int argc, char **argv)
 	t_mlx		mlx;
 	t_coord		coord;
 	char		**new_map;
+	int			fd;
 
 	if (argc != 2)
 		return (ft_printf("Error: argument number invalid\n"));
-	create_map(argv[1], &mlx);
+	fd = 0;
+	mlx.map = NULL;
+	create_map(argv[1], &mlx, fd);
 	coord.x = 0;
 	coord.y = 0;
 	coord = find_player(mlx.map, coord);

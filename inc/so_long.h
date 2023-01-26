@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 01:32:23 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 11:03:25 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 13:40:39 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		key_hook_esc(int key, t_mlx *mlx);
 int		enemy_count(char **map);
 int		ft_exit(void);
 void	free_write_exit(const char *str, char **fr1, char *fr2, int e);
-void	create_map(char *file, t_mlx *mlx);
+void	create_map(char *file, t_mlx *mlx, int fd);
 void	init_game(t_mlx *mlx);
 void	img_name(t_mlx *mlx, char c, int pos, int frame_max);
 void	*choose_img(void *mlx, char c);

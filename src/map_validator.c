@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/02 14:17:00 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:01:07 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,21 @@ static void	check_file_name(char *file)
 		free_write_exit("Error: incorrect extension\n", NULL, NULL, 1);
 }
 
-void	create_map(char *file, t_mlx *mlx)
+void	create_map(char *file, t_mlx *mlx, int fd)
 {
-	int		fd;
 	char	*lane;
 	int		error;
 
 	error = 0;
 	check_file_name(file);
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		free_write_exit("error: invalid fd\n", NULL, NULL, 1);
 	lane = get_next_line(fd);
 	if (!check_first_last(lane))
 		free_write_exit("Error: invalid file\n", NULL, lane, 1);
 	mlx->coord.x = ft_strlen(lane) - 1;
 	mlx->coord.y = 0;
-	mlx->map = NULL;
 	while (lane)
 	{
 		mlx->map = realloc_double(mlx->map, lane);
