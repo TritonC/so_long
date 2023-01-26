@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:47:47 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/11/30 16:15:27 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:28:48 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*dinamic_copy(char *file)
 	count = -1;
 	temp = ft_calloc(ft_strlen(file) + 1, 1);
 	if (!temp)
-		free_write_exit("sprite error", NULL, temp, 1);
+		free_write_exit("error: File not found", NULL, temp, 1);
 	while (file[++count])
 		temp[count] = file[count];
 	return (temp);
