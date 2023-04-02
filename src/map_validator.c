@@ -6,7 +6,7 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/04/02 13:07:28 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:09:43 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	create_map(char *file, t_mlx *mlx)
 {
 	char	*lane;
 	int		error;
+	int		fd;
 
 	error = 0;
 	check_file_name(file);
