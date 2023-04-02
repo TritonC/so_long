@@ -6,12 +6,21 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:30:14 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 11:23:11 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:01:03 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+/**
+ * It loads a series of images
+ * from a file with a number at the end of it
+ * 
+ * @param mlx the t_mlx structure
+ * @param images a pointer to a t_data structure.
+ * @param file the name of the file, without the number.
+ * @param frames the number of frames in the animation
+ */
 void	images_load(t_mlx *mlx, t_data *images, char *file, int frames)
 {
 	int		x;
@@ -32,6 +41,16 @@ void	images_load(t_mlx *mlx, t_data *images, char *file, int frames)
 	}
 }
 
+/**
+ * It takes a t_data struct,
+ * which contains a list of images, and displays the current frame of the animation
+ * at the given coordinates
+ * 
+ * @param mlx The mlx structure
+ * @param images The t_data structure that holds the images.
+ * @param x x position of the image
+ * @param y y position of the image
+ */
 void	image_animate(t_mlx *mlx, t_data *images, int x, int y)
 {
 	if (images->frame < 0 || images->frame > images->max)
@@ -44,6 +63,14 @@ void	image_animate(t_mlx *mlx, t_data *images, int x, int y)
 		images->frame = 0;
 }
 
+/**
+ * It checks if the player is on the same tile as the character, and if so, it puts the character on
+ * top of the player
+ * 
+ * @param mlx the main structure
+ * @param image the image to animate
+ * @param coords the coordinates of the current tile
+ */
 void	check_char(t_mlx *mlx, t_data *image, t_coord coords)
 {
 	put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
@@ -53,6 +80,14 @@ void	check_char(t_mlx *mlx, t_data *image, t_coord coords)
 		put_and_destroy(mlx, mlx->player.file, coords);
 }
 
+/**
+ * It checks for the presence of a character in the map, and if it finds one, it calls the appropriate
+ * function to handle it
+ * 
+ * @param mlx the main structure
+ * @param c a t_coord struct that holds the x and y coordinates of the current position
+ * @param enemy an array of size 1 that holds the number of enemies that have been
+ */
 static void	an_utils(t_mlx *mlx, t_coord c, int *enemy)
 {
 	if (mlx->map[c.y][c.x] == 'C')
@@ -67,6 +102,13 @@ static void	an_utils(t_mlx *mlx, t_coord c, int *enemy)
 		move_enemy(mlx, &mlx->enemies[enemy[0]++]);
 }
 
+/**
+ * It checks if it's time to change the frame of the animation, and if so, it does so
+ * 
+ * @param mlx the main structure
+ * 
+ * @return 0.
+ */
 int	animations(t_mlx *mlx)
 {
 	t_coord	c;

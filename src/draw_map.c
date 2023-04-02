@@ -6,12 +6,20 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:57:20 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 14:19:25 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:07:41 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+/**
+ * It returns a pointer to an image based on the character passed to it
+ * 
+ * @param mlx the pointer to the mlx window
+ * @param c the character that is being checked
+ * 
+ * @return a pointer to the image.
+ */
 void	*choose_img(void *mlx, char c)
 {
 	int	x;
@@ -46,8 +54,12 @@ char	*choose_filename(t_mlx *mlx, char c)
 		return (FLOOR);
 }
 
-// function to get position data
-
+/**
+ * It draws the map
+ * 
+ * @param mlx the main structure
+ * @param coords the coordinates of the current tile
+ */
 void	draw_map_util(t_mlx *mlx, t_coord coords)
 {
 	put_and_destroy(mlx, choose_filename(mlx, '0'), coords);
@@ -76,8 +88,12 @@ void	draw_map_util(t_mlx *mlx, t_coord coords)
 			choose_filename(mlx, mlx->map[coords.y][coords.x]), coords);
 }
 
-// function to draw the map
-
+/**
+ * It draws the map
+ * 
+ * @param mlx the main structure that holds all the information about the map, the player, and the
+ * image.
+ */
 void	draw_map(t_mlx *mlx)
 {
 	t_coord	coords;

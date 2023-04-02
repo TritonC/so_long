@@ -6,12 +6,20 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 19:38:59 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 11:23:43 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:02:48 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+/**
+ * It finds the player's position on the map
+ * 
+ * @param map the map of the game
+ * @param coord This is a structure that contains the x and y coordinates of the player.
+ * 
+ * @return the coordinates of the player.
+ */
 t_coord	find_player(char **map, t_coord coord)
 {
 	coord.x = 0;

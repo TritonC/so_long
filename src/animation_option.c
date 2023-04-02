@@ -6,13 +6,13 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 16:22:22 by mluis-fu          #+#    #+#             */
-/*   Updated: 2022/12/16 19:14:49 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 12:59:19 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-// function to find the enemy position
+/* A function that finds the enemy position. */
 t_data	choose_data(t_mlx *mlx, int x, int y)
 {
 	if (x == -1 && y == 0)
@@ -25,6 +25,13 @@ t_data	choose_data(t_mlx *mlx, int x, int y)
 		return (mlx->u_enemy);
 }
 
+
+/**
+ * It takes the name of the file and changes the last two digits to the current frame number
+ * 
+ * @param data the structure containing all the data
+ * @param pos the position of the last digit in the file name
+ */
 void	img_name_animation(t_data *data, int pos)
 {
 	data->file[pos] = '0' + data->frame;
@@ -40,6 +47,13 @@ void	img_name_animation(t_data *data, int pos)
 	}
 }
 
+/**
+ * It puts an image to the window and destroys it
+ * 
+ * @param mlx the structure containing the mlx_init, mlx_win, and mlx_img
+ * @param file the path to the image file
+ * @param coords the coordinates of the image to be put on the window
+ */
 void	put_and_destroy(t_mlx *mlx, char *file, t_coord coords)
 {
 	int	x;

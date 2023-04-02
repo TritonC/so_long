@@ -6,12 +6,20 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:12:17 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 14:01:07 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:07:28 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+/**
+ * It checks if the first and last characters of the lane are '1' and if the lane is longer than 128
+ * characters.
+ * 
+ * @param lane the lane to check
+ * 
+ * @return the number of characters in the string.
+ */
 static int	check_first_last(char *lane)
 {
 	int	count;
@@ -100,7 +108,13 @@ static void	check_file_name(char *file)
 		free_write_exit("Error: incorrect extension\n", NULL, NULL, 1);
 }
 
-void	create_map(char *file, t_mlx *mlx, int fd)
+/**
+ * It reads the map file, checks for errors, and stores the map in a 2D array
+ * 
+ * @param file the name of the file to be read
+ * @param mlx a pointer to the t_mlx structure
+ */
+void	create_map(char *file, t_mlx *mlx)
 {
 	char	*lane;
 	int		error;

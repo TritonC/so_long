@@ -6,12 +6,19 @@
 /*   By: mluis-fu <mluis-fu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:31:29 by mluis-fu          #+#    #+#             */
-/*   Updated: 2023/01/26 14:21:49 by mluis-fu         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:06:49 by mluis-fu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
+/**
+ * It counts the number of enemies on the map
+ * 
+ * @param map The map
+ * 
+ * @return The number of enemies on the map.
+ */
 int	enemy_count(char **map)
 {
 	t_coord		pos;
@@ -31,6 +38,15 @@ int	enemy_count(char **map)
 	return (count);
 }
 
+/**
+ * It moves the enemy in the
+ * direction specified by the parameters, and animates the movement
+ * 
+ * @param mlx the main structure
+ * @param enemy the enemy that is moving
+ * @param dx the x-axis direction of the enemy's movement
+ * @param dy the direction the enemy is moving in the y axis
+ */
 void	move_util(t_mlx *mlx, t_enemy *enemy, int dx, int dy)
 {
 	t_data	data;
@@ -51,6 +67,12 @@ void	move_util(t_mlx *mlx, t_enemy *enemy, int dx, int dy)
 	enemy->frame++;
 }
 
+/**
+ * It moves the enemy
+ * 
+ * @param mlx the main structure
+ * @param enemy the enemy that is moving
+ */
 static void	move_asset(t_mlx *mlx, t_enemy *enemy)
 {
 	put_and_destroy(mlx, choose_filename(mlx, '0'), enemy->pos);
@@ -71,6 +93,12 @@ static void	move_asset(t_mlx *mlx, t_enemy *enemy)
 	}
 }
 
+/**
+ * It moves the enemy
+ * 
+ * @param mlx the main structure
+ * @param enemy the enemy to move
+ */
 void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 {
 	move_asset(mlx, enemy);
@@ -90,6 +118,13 @@ void	move_enemy(t_mlx *mlx, t_enemy *enemy)
 	enemy++;
 }
 
+/**
+ * It takes a map and returns an array of enemies
+ * 
+ * @param map The map that we're going to be using to find the enemies.
+ * 
+ * @return An array of t_enemy structs.
+ */
 t_enemy	*enemy_init(char **map)
 {
 	t_enemy	*enemies;
